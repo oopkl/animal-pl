@@ -1,0 +1,60 @@
+% Facts about animals and their characteristics
+animal(mammal).
+animal(bird).
+animal(reptile).
+animal(fish).
+animal(amphibian).
+
+% Mammals
+characteristic(whale, mammal).
+characteristic(tiger, mammal).
+characteristic(human, mammal).
+
+% Birds
+characteristic(eagle, bird).
+characteristic(penguin, bird).
+characteristic(sparrow, bird).
+
+% Reptiles
+characteristic(crocodile, reptile).
+characteristic(lizard, reptile).
+characteristic(snake, reptile).
+
+% Fish
+characteristic(shark, fish).
+characteristic(salmon, fish).
+characteristic(clownfish, fish).
+
+% Amphibians
+characteristic(frog, amphibian).
+characteristic(salamander, amphibian).
+characteristic(caecilian, amphibian).
+
+% Rules for characteristics
+has_characteristic(X, warm_blooded) :- characteristic(X, mammal).
+has_characteristic(X, warm_blooded) :- characteristic(X, bird).
+has_characteristic(X, cold_blooded) :- characteristic(X, reptile).
+has_characteristic(X, cold_blooded) :- characteristic(X, fish).
+has_characteristic(X, cold_blooded) :- characteristic(X, amphibian).
+
+has_characteristic(X, has_hair) :- characteristic(X, mammal).
+has_characteristic(X, has_feathers) :- characteristic(X, bird).
+has_characteristic(X, has_scales) :- characteristic(X, reptile).
+has_characteristic(X, has_scales) :- characteristic(X, fish).
+
+has_characteristic(X, can_fly) :- characteristic(X, bird), X \= penguin.
+has_characteristic(X, can_swim) :- characteristic(X, fish).
+has_characteristic(X, can_swim) :- characteristic(X, mammal), X = whale.
+has_characteristic(X, can_swim) :- characteristic(X, bird), X = penguin.
+has_characteristic(X, can_swim) :- characteristic(X, amphibian).
+
+has_characteristic(X, lays_eggs) :- characteristic(X, bird).
+has_characteristic(X, lays_eggs) :- characteristic(X, reptile).
+has_characteristic(X, lays_eggs) :- characteristic(X, fish).
+has_characteristic(X, lays_eggs) :- characteristic(X, amphibian).
+
+% Example Queries
+% To find out if a tiger is warm-blooded: has_characteristic(tiger, warm_blooded).
+% To find animals that can swim: has_characteristic(X, can_swim).
+% To find animals that lay eggs: has_characteristic(X, lays_eggs).
+% To find if a whale is a mammal: characteristic(whale, mammal).
